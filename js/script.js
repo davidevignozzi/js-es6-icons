@@ -4,7 +4,7 @@
 
 const icons = [
   { name: 'comment', prefix: 'fa fa-comment', type: 'reaction', family: '', },
-  { name: 'thumbs', prefix: 'fa fa-thumbs-up ', type: 'reaction', family: '', },
+  { name: 'thumbs up', prefix: 'fa fa-thumbs-up ', type: 'reaction', family: '', },
   { name: 'heart', prefix: 'fa fa-heart', type: 'reaction', family: '', },
 
   { name: 'car', prefix: 'fa fa-car', type: 'transport', family: '', },
@@ -34,42 +34,36 @@ icons.forEach((element) => {
 // - Definire un array di colori e associare ad ogni tipo di icona un colore.
 // - Visualizzare le icone di colore diverso in base al tipo.
 
-const colors = [
-  {color: 'blue', type: 'reaction'},
-  {color: 'green', type: 'transport'},
-  {color: 'red', type: 'healty'},
-]
+const colors = ['blue', 'green', 'red']
+const types = []
 
-const newIcons = icons.map((element) => {
-
-  // reaction === blue
-  if (element.type === 'reaction') {
-    return {...element, 'color': 'blue'}
+icons.forEach((element) => {
+  if(!types.includes(element.type)) {
+    types.push(element.type)
   }
-
-  // transport === green
-  if (element.type === 'transport') {
-    return {...element, 'color': 'green'}
-  }
-
-  // healty === red
-  if (element.type === 'healty') {
-    return {...element, 'color': 'red'}
-  }
-
 })
 
-const appContainerSecond = document.getElementById('container-second'); //prendo il secondo container
+// associo ad ogni tipo un colore
+icons.forEach((element) => {
+  const typeIndex = types.indexOf(element.type)
 
-newIcons.forEach((element) => {
+  if (typeIndex !== -1) {
+    element.color = colors[typeIndex]
+  }
+})
 
-  appContainerSecond.innerHTML +=
-  `
-  <div>
-    <i class="${element.prefix}" style="color:${element.color}"</i>
-    ${element.name}
-  </div>
-  `
+const appContainerSecond = document.getElementById('container-second'); // prendo il secondo container
+
+icons.forEach((element) => {
+
+ appContainerSecond.innerHTML +=
+ `
+ <div>
+   <i class="${element.prefix}" style="color:${element.color}"</i>
+   <br>
+   ${element.name}
+ </div>
+ `
 
 })
 
