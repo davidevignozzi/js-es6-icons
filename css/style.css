@@ -1,0 +1,11 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 22;
+}
+
+#container {
+  padding: 10px;
+  margin: 10px;
+}
